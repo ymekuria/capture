@@ -1,0 +1,21 @@
+{
+  "name": "capture",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "electron": "~1.6.2"
+  },
+  "dependencies": {
+    "electron": "^1.6.11",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.10"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron ."
+  }
+}
