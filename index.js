@@ -1,10 +1,10 @@
 const electron = require('electron');
 const path = require('path');
 const MainWindow = require('./app/MainWindow');
-const CaptureWindow = require('./app/CaptureTray');
+const CaptureTray = require('./app/CaptureTray');
 const { app, BrowserWIndow, Tray } = electron;
 
-let mainWindow,
+let mainWindow;
 let tray;
 
 app.on('ready', () => {
