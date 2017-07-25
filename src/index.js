@@ -10,7 +10,7 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router>
 			<Switch>
-				<Route path ="/" comopnent={HomeScreen} />
+				<Route path ="/" component={HomeScreen} />
 			</Switch>
 		</Router>
 	</Provider>, 

@@ -2,9 +2,11 @@ const electron = require('electron');
 const { app, Menu, Tray }  = electron;
 
 class CaptureTray extends Tray {
-	constructor(iconName) {
+	constructor(iconName, contextMenu) {
 		super(iconName)
 		this.setToolTip('Capture');
+		this.setContextMenu(contextMenu);
+
 		this.on('click', this.onClick.bind(this));
 		this.on('right-click', this.onClick.bind(this))
 	}
