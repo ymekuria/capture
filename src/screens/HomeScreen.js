@@ -11,15 +11,15 @@ class HomeScreen extends Component {
           <ToolbarNav>
             <ToolbarNavItem
               title="Item 1"
-              icon={}
-              selected={}
-              onClick={() => }
+              icon={capture_tray_icon}
+              selected={true}
+              onClick={() => {} }
             />
             <ToolbarNavItem
               title="Item 2"
-              icon={}
-              selected={}
-              onClick={() => }
+              icon={capture_tray_icon}
+              selected={false}
+              onClick={() => {} }
             />
           </ToolbarNav>
         </Toolbar>
