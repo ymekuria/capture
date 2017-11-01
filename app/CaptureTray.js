@@ -19,8 +19,8 @@ class CaptureTray extends Tray {
 		const menu = Menu.buildFromTemplate([
 			{
 				label: 'Quit',
-				click: () => app.quite()
-			}	
+				click: () => app.quit()
+			}
 		]);
 
 		this.popUpContextMenu(menu);
