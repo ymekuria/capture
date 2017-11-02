@@ -6,9 +6,6 @@ class HomeScreen extends Component {
 		<div>
 			<div>HomeScreen</div>
 			<div>HomeScreen</div>
-			<div>HomeScreen</div>
-			<div>HomeScreen</div>
-			<div>HomeScreen</div>
 		</div>
 		);
 	}
