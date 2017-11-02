@@ -17,7 +17,6 @@ app.on('ready', () => {
 	  {label: 'Stop', type: 'radio'},
 	])
 
-	console.log('env', process.env.NODE_ENV)
 
 	mainWindow = new MainWindow(startUrl);
 

@@ -9,6 +9,7 @@
     "concurrently": "^3.5.0",
     "dotenv": "^4.0.0",
     "electron": "^1.6.11",
+    "materialize-css": "^0.100.2",
     "react": "^15.6.1",
     "react-desktop": "^0.3.1",
     "react-dom": "^15.6.1",
@@ -25,7 +26,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "electron-dev": "set DEV_URL=http://localhost:3000 && electron .",
-    "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000/ && npm run electron-dev\""
+    "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000/ && npm run electron\""
   }
 }

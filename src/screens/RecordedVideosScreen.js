@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
-class RecordedVideoScreen extends Component {
+class RecordedVideosScreen extends Component {
 	render() {
 		return (
-			<div>RecordedVideoScreen</div>
-			<div>RecordedVideoScreen</div>
-			<div>RecordedVideoScreen</div>
-			<div>RecordedVideoScreen</div>
-			<div>RecordedVideoScreen</div>
-			<div>RecordedVideoScreen</div>
+			<div>
+				<div>RecordedVideosScreen</div>
+				<div>RecordedVideosScreen</div>
+				<div>RecordedVideosScreen</div>
+				<div>RecordedVideosScreen</div>
+				<div>RecordedVideosScreen</div>
+				<div>RecordedVideosScreen</div>
+			</div>
 		);
 	}
 }
 
-export default RecordedVideoScreen;
+export default RecordedVideosScreen;
