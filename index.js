@@ -1,9 +1,11 @@
+require('dotenv').config();
 const electron = require('electron');
 const path = require('path');
+const url = require('url');
 const MainWindow = require('./app/MainWindow');
 const CaptureTray = require('./app/CaptureTray');
 const { app, BrowserWIndow, Tray, Menu } = electron;
-const startUrl = process.env.DEV_URL;
+const startUrl = require('./config/keys').startUrl;
 
 let mainWindow;
 let tray;
@@ -14,9 +16,9 @@ app.on('ready', () => {
 	  {label: 'Record', type: 'radio'},
 	  {label: 'Stop', type: 'radio'},
 	])
-	console.log('url', startUrl);
-	// use the below once a build bundle is created
-	// mainWindow.loadURL(`file://${__dirname}/public/index.html`);
+
+	console.log('env', process.env.NODE_ENV)
+
 	mainWindow = new MainWindow(startUrl);
 
 	tray = new CaptureTray(iconPath, contextMenu);
