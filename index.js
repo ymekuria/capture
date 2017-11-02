@@ -3,6 +3,7 @@ const path = require('path');
 const MainWindow = require('./app/MainWindow');
 const CaptureTray = require('./app/CaptureTray');
 const { app, BrowserWIndow, Tray, Menu } = electron;
+const startUrl = process.env.DEV_URL;
 
 let mainWindow;
 let tray;
@@ -13,10 +14,10 @@ app.on('ready', () => {
 	  {label: 'Record', type: 'radio'},
 	  {label: 'Stop', type: 'radio'},
 	])
+	console.log('url', startUrl);
 	// use the below once a build bundle is created
 	// mainWindow.loadURL(`file://${__dirname}/public/index.html`);
-	mainWindow = new MainWindow('http://localhost:3000');
-	console.log('url', process.env.DEV_URL);
+	mainWindow = new MainWindow(startUrl);
 
 	tray = new CaptureTray(iconPath, contextMenu);
 
