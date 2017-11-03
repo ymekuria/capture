@@ -1,0 +1,1 @@
+export const GET_SCREEN_SOURCES = 'GET_SCREEN_SOURCES';
