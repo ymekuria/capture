@@ -3,8 +3,13 @@ const { BrowserWindow } = electron;
 
 class MainWindow extends BrowserWindow {
   constructor(url) {
-    super();
-    
+    super({
+      webPreferences: {
+      nodeIntegration: false,
+      preload: __dirname + '/../preload.js'
+      }
+    });
+
     this.loadURL(url);
   }
 }

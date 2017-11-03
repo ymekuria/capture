@@ -17,10 +17,9 @@ app.on('ready', () => {
 	  {label: 'Stop', type: 'radio'},
 	])
 
-
+	console.log('Main window loading from: ', startUrl);
 	mainWindow = new MainWindow(startUrl);
 
 	tray = new CaptureTray(iconPath, contextMenu);
-
 
 });
