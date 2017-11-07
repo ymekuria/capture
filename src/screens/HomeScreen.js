@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { getUserScreens } from '../actions'
 
 
 class HomeScreen extends Component {
 	componentDidMount() {
-
+		this.props.getUserScreens();
 
 	}
-	
+
 
 	render() {
 
@@ -20,4 +21,4 @@ class HomeScreen extends Component {
 	}
 }
 
-export default HomeScreen;
+export default connect(null, { getUserScreens })(HomeScreen);

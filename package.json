@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "^1.7.9"
   },
   "dependencies": {
     "concurrently": "^3.5.0",
     "dotenv": "^4.0.0",
-    "electron": "^1.6.11",
     "materialize-css": "^0.100.2",
     "react": "^15.6.1",
     "react-desktop": "^0.3.1",
