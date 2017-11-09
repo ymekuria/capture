@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import screenSourceReducer from './screenSourceReducer'
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  screenSources: screenSourceReducer
 });
 
 export default rootReducer;
