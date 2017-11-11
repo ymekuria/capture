@@ -11,13 +11,23 @@ class HomeScreen extends Component {
 	}
 
 	renderScreenSources = () => {
-		return _.map(this.props.screenSources, (source) => {
+		return _.map(this.props.screenSources, ({ id, name, thumbnail}) => {
+			let thumbUrl = `'${thumbnail.toDataURL('image/jpeg')}'`
+			console.log('thumbUrl', thumbUrl);
 			return (
-				<div>
-					<div>
-
-					</div>
-				</div>
+				<div className="row" key={id}>
+	        <div className="col s12 m6">
+	          <div className="card blue-grey darken-1">
+	            <div className="card-content white-text">
+	              <span className="card-title">{name.slice(0,20)}</span>
+	              <img src={thumbnail.toDataURL()} />
+	            </div>
+	            <div className="card-action">
+	              <a href="#">Record</a>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
 
 			)
 		});
@@ -30,6 +40,7 @@ class HomeScreen extends Component {
 			<div>
 				<div>HomeScreen</div>
 				<div>HomeScreen</div>
+				{this.renderScreenSources()}
 			</div>
 		);
 	}

@@ -4,7 +4,7 @@ const path = require('path');
 const url = require('url');
 const MainWindow = require('./app/MainWindow');
 const CaptureTray = require('./app/CaptureTray');
-const { app, BrowserWIndow, Tray, Menu } = electron;
+const { app, BrowserWIndow, Tray, Menu, ipcMain,  desktopCapturer } = electron;
 const startUrl = require('./config/keys').startUrl;
 
 let mainWindow;
