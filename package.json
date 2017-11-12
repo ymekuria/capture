@@ -9,6 +9,7 @@
   "dependencies": {
     "concurrently": "^3.5.0",
     "dotenv": "^4.0.0",
+    "material-ui": "^0.19.4",
     "materialize-css": "^0.100.2",
     "react": "^15.6.1",
     "react-desktop": "^0.3.1",
