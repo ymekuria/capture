@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { getUserScreens } from '../actions';
+import { getUserScreens, selectScreenSource } from '../actions';
 
 class HomeScreen extends Component {
   componentDidMount() {
@@ -9,8 +9,7 @@ class HomeScreen extends Component {
   }
 
   onScreenSelect = source => {
-    console.log('source ', source);
-    // this.props.recordScreen(screen);
+    this.props.selectScreenSource(source);
   };
 
   renderScreenSources = () => {
@@ -22,7 +21,7 @@ class HomeScreen extends Component {
               <img src={source.thumbnail.toDataURL()} alt="" />
               <button
                 className="btn-floating halfway-fab"
-                onClick={this.onScreenSelect(source)}
+                onClick={() => this.onScreenSelect(source)}
               >
                 <i className="material-icons">add</i>
               </button>
@@ -38,8 +37,8 @@ class HomeScreen extends Component {
   }
 }
 
-function mapStateToProps({ screenSources }) {
-  return { screenSources };
+function mapStateToProps({ screenSources, selectedScreenSource }) {
+  return { screenSources, selectedScreenSource };
 }
 
 const styles = {
@@ -56,4 +55,6 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { getUserScreens })(HomeScreen);
+export default connect(mapStateToProps, { getUserScreens, selectScreenSource })(
+  HomeScreen
+);
