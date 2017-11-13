@@ -1,47 +1,59 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import Card from 'material-ui/Card';
-import { getUserScreens } from '../actions'
-
+import { getUserScreens } from '../actions';
 
 class HomeScreen extends Component {
-	componentDidMount() {
-		this.props.getUserScreens();
+  componentDidMount() {
+    this.props.getUserScreens();
+  }
 
-	}
+  onScreenSelect = source => {
+    console.log('source ', source);
+    // this.props.recordScreen(screen);
+  };
 
-	renderScreenSources = () => {
-		return _.map(this.props.screenSources, ({ id, name, thumbnail}) => {
-			let thumbUrl = `'${thumbnail.toDataURL('image/jpeg')}'`
-			console.log('thumbUrl', thumbUrl);
-			return (
-				<div className="row" key={id}>
-			    <div className="col s12 m6">
-			      <div className="card">
-			        <div className="card-image">
-								<img src={thumbnail.toDataURL()} />
-			          <span className="card-title">{name.slice(0,20)}</span>
-			          <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></a>
-			        </div>
-			      </div>
-			    </div>
-			  </div>
-			)
-		});
-	}
+  renderScreenSources = () => {
+    return _.map(this.props.screenSources, source => {
+      return (
+        <div style={styles.cardItem} key={source.id}>
+          <div className="card">
+            <div>
+              <img src={source.thumbnail.toDataURL()} alt="" />
+              <button
+                className="btn-floating halfway-fab"
+                onClick={this.onScreenSelect(source)}
+              >
+                <i className="material-icons">add</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
 
-
-	render() {
-		return (
-			<div>
-				{this.renderScreenSources()}
-			</div>
-		);
-	}
+  render() {
+    return <div style={styles.cardContainer}>{this.renderScreenSources()}</div>;
+  }
 }
 
 function mapStateToProps({ screenSources }) {
-	return { screenSources };
+  return { screenSources };
 }
+
+const styles = {
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
+  },
+  cardItem: {
+    display: 'flex',
+    flex: 1,
+    margin: '10px'
+  }
+};
+
 export default connect(mapStateToProps, { getUserScreens })(HomeScreen);

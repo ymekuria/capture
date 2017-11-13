@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HashRouter, BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 import NavBar from "./NavBar";
 import HomeScreen from "../screens/HomeScreen";
@@ -10,7 +10,7 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<div>
-          <NavBar/>
+					<NavBar/>
 					<Route exact path="/" component={HomeScreen} />
           <Route exact path="/videos" component={RecordedVideosScreen} />
 				</div>
