@@ -1,4 +1,4 @@
-import { GET_SCREEN_SOURCES } from '../actions/types'
+import { GET_SCREEN_SOURCES } from '../actions/types';
 
 export default (state = [], action) => {
   switch (action.type) {
@@ -7,4 +7,4 @@ export default (state = [], action) => {
     default:
       return state;
   }
-}
+};
