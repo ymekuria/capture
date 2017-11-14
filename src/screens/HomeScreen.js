@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import { getUserScreens, selectScreenSource } from '../actions';
 
@@ -9,7 +10,8 @@ class HomeScreen extends Component {
   }
 
   onScreenSelect = source => {
-    this.props.selectScreenSource(source);
+		// this.props.history.push('/videos');
+    this.props.selectScreenSource(source, this.props.history);
   };
 
   renderScreenSources = () => {
@@ -20,7 +22,7 @@ class HomeScreen extends Component {
             <div>
               <img src={source.thumbnail.toDataURL()} alt="" />
               <button
-                className="btn-floating halfway-fab"
+                className="btn-floating  waves-effect waves-light halfway-fab"
                 onClick={() => this.onScreenSelect(source)}
               >
                 <i className="material-icons">add</i>
