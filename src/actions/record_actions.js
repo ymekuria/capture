@@ -25,7 +25,7 @@ export const selectScreenSource = (source, history) => async dispatch => {
 
   try {
     // getting the video stream then adding the audio track seperatly to it
-    // currently, the api doesn't support capturing both the audio and video streams
+    // currently, the api doesn't support capturing both the audio and video streams on osx
     let videoStream = await navigator.mediaDevices.getUserMedia(constraints);
     let audioStream = await navigator.mediaDevices.getUserMedia({
       audio: true,

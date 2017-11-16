@@ -7,26 +7,36 @@ class RecordedVideosScreen extends Component {
   state = {
     videoSource: null
   };
+
   // rerendering once the videoSource blob is created
   componentDidMount() {
-    console.log('stream: addio ', this.props.selectedScreenSource.getAudioTracks());
-
-    console.log('stream: addio ', this.props.selectedScreenSource.getVideoTracks());
     this.setState({
-      videSource: window.URL.createObjectURL(this.props.selectedScreenSource)
+      videoSource: window.URL.createObjectURL(this.props.selectedScreenSource)
     });
+    // creating a recorder instance of the stream
+    this.recorder = new MediaRecorder(this.props.selectedScreenSource);
   }
 
+  onRecordPress = () => {
+    this.recorder.start();
+    console.log('recorder', this.recorder);
+  };
+
+  onStopPress = () => {
+    this.recorder.stop();
+  };
   render() {
     return (
       <div>
-        <video
-          src={this.state.videSource}
-          autoPlay="true"
-          controls
-        />
+        <video src={this.state.videoSource} autoPlay="true" controls />
         <button className="btn" onClick={() => this.props.history.push('/')}>
           back
+        </button>
+        <button className="btn" onClick={this.onRecordPress}>
+          record
+        </button>
+        <button className="btn" onClick={this.onStopPress}>
+          stop
         </button>
       </div>
     );
