@@ -17,6 +17,11 @@ class RecordedVideosScreen extends Component {
     this.recorder = new MediaRecorder(this.props.selectedScreenSource);
   }
 
+  componentWillUnmount() {
+    // stops the recording in the case when a user navigates withought manually stoping it.
+    this.recorder.stop();
+  }
+
   onRecordPress = () => {
     this.recorder.start();
     console.log('recorder', this.recorder);
@@ -25,9 +30,10 @@ class RecordedVideosScreen extends Component {
   onStopPress = () => {
     this.recorder.stop();
   };
+
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: 'blue', opacity: 1 }}>
         <video src={this.state.videoSource} autoPlay="true" controls />
         <button className="btn" onClick={() => this.props.history.push('/')}>
           back
