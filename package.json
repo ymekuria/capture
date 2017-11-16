@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "main.js",
+  "chromium-args" : "--enable-usermedia-screen-capturing",
   "devDependencies": {
     "electron": "^1.7.9"
   },

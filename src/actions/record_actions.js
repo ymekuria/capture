@@ -5,51 +5,40 @@ const { desktopCapturer } = electron;
 
 export const getUserScreens = () => async dispatch => {
   let sources = await asyncToPromise(desktopCapturer.getSources, {
-    types: ['window', 'screen']
+    types: ['audio', 'window', 'screen']
   });
 
   dispatch({ type: GET_SCREEN_SOURCES, payload: { ...sources } });
 };
 
 export const selectScreenSource = (source, history) => async dispatch => {
-  //   navigator.webkitGetUserMedia({
-  //      audio: true,
-  //      video: {
-  //         mandatory: {
-  //            chromeMediaSource: 'desktop',
-  //            chromeMediaSourceId: sources.id,
-  //            minWidth: 1280,
-  //            maxWidth: 1280,
-  //            minHeight: 720,
-  //            maxHeight: 720
-  //         }
-  //      }
-  //   }, handleStream, () => {
-//   console.log('getUserMedia() failed.')
-// })
-const options = {
-     audio: false,
-     video: {
-        mandatory: {
-           chromeMediaSource: 'desktop',
-           chromeMediaSourceId: source.id,
-           minWidth: 600,
-           maxWidth: 600,
-           minHeight: 420,
-           maxHeight: 420
-        }
-     }
+  // this specifies the screen source the user wants to record using the via the sourc.id
+  const constraints = {
+    video: {
+      mandatory: {
+        chromeMediaSource: 'desktop',
+        chromeMediaSourceId: source.id
+      }
+    },
+    audio: false
   };
-  try {
-    let stream = await navigator.mediaDevices.getUserMedia(options);
-    console.log('stream: ', stream);
-    dispatch({ type: SELECTED_SCREEN_SOURCE, payload: stream });
-    history.push('/videos');
 
+  try {
+    // getting the video stream then adding the audio track seperatly to it
+    // currently, the api doesn't support capturing both the audio and video streams
+    let videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+    let audioStream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: false
+    });
+
+    let audioTrack = audioStream.getAudioTracks()[0];
+
+    videoStream.addTrack(audioTrack);
+
+    dispatch({ type: SELECTED_SCREEN_SOURCE, payload: videoStream });
+    history.push('/videos');
   } catch (e) {
     console.log('error: ', e);
   }
-
-
-
 };

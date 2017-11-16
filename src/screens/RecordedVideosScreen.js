@@ -9,6 +9,9 @@ class RecordedVideosScreen extends Component {
   };
   // rerendering once the videoSource blob is created
   componentDidMount() {
+    console.log('stream: addio ', this.props.selectedScreenSource.getAudioTracks());
+
+    console.log('stream: addio ', this.props.selectedScreenSource.getVideoTracks());
     this.setState({
       videSource: window.URL.createObjectURL(this.props.selectedScreenSource)
     });
@@ -17,7 +20,11 @@ class RecordedVideosScreen extends Component {
   render() {
     return (
       <div>
-        <video src={this.state.videSource} />
+        <video
+          src={this.state.videSource}
+          autoPlay="true"
+          controls
+        />
         <button className="btn" onClick={() => this.props.history.push('/')}>
           back
         </button>
