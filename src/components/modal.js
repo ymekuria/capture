@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-class Modal extends Component {
-  render() {
-    return (
-      <div>MODAL</div>
-      <div>MODAL</div>
-      <div>MODAL</div>
-      <div>MODAL</div>
-      <div>MODAL</div>
-      <div>MODAL</div>
-      <div>MODAL</div>
-    );
-  }
-}
-
-export default Modal;
+export default ({ header, text, confirmText }) => {
+  return (
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>{header ? header : ''}</h4>
+        <p>{text}</p>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat">
+          {confirmText}
+        </a>
+      </div>
+    </div>
+  );
+};
