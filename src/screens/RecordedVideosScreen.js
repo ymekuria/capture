@@ -19,7 +19,9 @@ class RecordedVideosScreen extends Component {
 
   componentWillUnmount() {
     // stops the recording in the case when a user navigates withought manually stoping it.
-    this.recorder.stop();
+    if (this.recorder) {
+      this.recorder.stop();
+    }
   }
 
   onRecordPress = () => {

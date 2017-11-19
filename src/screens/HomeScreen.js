@@ -3,8 +3,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import { getUserScreens, selectScreenSource } from '../actions';
+import Modal from '../components/Modal';
 
 class HomeScreen extends Component {
+  state = {
+    modalOpen: false
+  }
+
   componentDidMount() {
     this.props.getUserScreens();
   }
@@ -17,13 +22,16 @@ class HomeScreen extends Component {
   renderScreenSources = () => {
     return _.map(this.props.screenSources, source => {
       return (
-        <div style={styles.cardItem} key={source.id}>
+        <div style={styles.cardItem} onClick={() => 'c'} key={source.id}>
           <div className="card">
             <div>
               <img src={source.thumbnail.toDataURL()} alt="" />
               <button
                 className="btn-floating  waves-effect waves-light halfway-fab"
-                onClick={() => this.onScreenSelect(source)}
+                onClick={() => {
+                  this.setState({ modalOpen: true })
+                  console.log('this.state after click', this.state)
+                }}
               >
                 <i className="material-icons">add</i>
               </button>
@@ -35,13 +43,23 @@ class HomeScreen extends Component {
   };
 
   render() {
-    return <div style={styles.cardContainer}>{this.renderScreenSources()}</div>;
+    console.log('this.state', this.state.modalOpen)
+    return (
+      <div>
+        <Modal isModalOpen={this.state.modalOpen}>
+
+        </Modal>
+        <div style={styles.cardContainer}>{this.renderScreenSources()}</div>;
+      </div>
+
+    )
+
   }
 }
 
-function mapStateToProps({ screenSources, selectedScreenSource }) {
+const mapStateToProps = ({ screenSources, selectedScreenSource }) => {
   return { screenSources, selectedScreenSource };
-}
+};
 
 const styles = {
   cardContainer: {
@@ -56,6 +74,7 @@ const styles = {
     margin: '10px'
   }
 };
+
 
 export default connect(mapStateToProps, { getUserScreens, selectScreenSource })(
   HomeScreen

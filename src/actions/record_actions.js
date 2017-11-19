@@ -42,3 +42,7 @@ export const selectScreenSource = (source, history) => async dispatch => {
     console.log('error: ', e);
   }
 };
+
+const initializeRecordStream = stream => {
+  const recorder = new MediaRecorder(stream);
+}

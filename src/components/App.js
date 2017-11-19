@@ -11,8 +11,11 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <NavBar />
-          <Route exact path="/" component={HomeScreen} />
-          <Route exact path="/videos" component={RecordedVideosScreen} />
+          <div style={{ backgroundColor: 'rgba(255, 255, 255, .2)' }}>
+            <Route exact path="/modal" />
+            <Route exact path="/" component={HomeScreen} />
+            <Route exact path="/videos" component={RecordedVideosScreen} />
+          </div>
         </div>
       </BrowserRouter>
     );
