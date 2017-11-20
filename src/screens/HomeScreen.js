@@ -30,7 +30,6 @@ class HomeScreen extends Component {
                 className="btn-floating  waves-effect waves-light halfway-fab"
                 onClick={() => {
                   this.setState({ modalOpen: true })
-                  console.log('this.state after click', this.state)
                 }}
               >
                 <i className="material-icons">add</i>
@@ -46,7 +45,10 @@ class HomeScreen extends Component {
     console.log('this.state', this.state.modalOpen)
     return (
       <div>
-        <Modal isModalOpen={this.state.modalOpen}>
+        <Modal isModalOpen={this.state.modalOpen}
+          callToAction="Do You Want To Record This Screen?"
+          confirmLabel="Record"
+        >
 
         </Modal>
         <div style={styles.cardContainer}>{this.renderScreenSources()}</div>;
