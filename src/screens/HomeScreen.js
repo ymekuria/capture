@@ -41,6 +41,14 @@ class HomeScreen extends Component {
     });
   };
 
+  onModalConfirm = () => {
+    // TODO call action creater to start a media recording instance via electron
+    this.setState({ modalOpen: false });
+  }
+  onModalCancel = () => {
+    this.setState({ modalOpen: false });
+  }
+
   render() {
     console.log('this.state', this.state.modalOpen)
     return (
@@ -48,6 +56,8 @@ class HomeScreen extends Component {
         <Modal isModalOpen={this.state.modalOpen}
           callToAction="Do You Want To Record This Screen?"
           confirmLabel="Record"
+          onModalConfirm={() => console.log('confirm')}
+          onModalCancel={this.onModalCancel}
         >
 
         </Modal>

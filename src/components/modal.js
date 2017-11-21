@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
-export default ({ isModalOpen, callToAction, confirmLabel }) => {
+export default ({ isModalOpen, callToAction, confirmLabel, onModalConfirm, onModalCancel }) => {
   const { modalStyles, buttonContainerStyles, buttonStyles } = styles;
   return (
     <Modal
@@ -10,17 +10,21 @@ export default ({ isModalOpen, callToAction, confirmLabel }) => {
       contentLabel="Modal"
       style={modalStyles}
     >
-      <div >
-        <p>{callToAction}</p>
-      </div>
+      <p>{callToAction}</p>
       <div style={buttonContainerStyles}>
         <button
           className="waves-effect waves-light red btn"
           style={buttonStyles}
+          onClick={onModalCancel}
         >
           Cancel
         </button>
-        <button className="btn" style={buttonStyles} >{confirmLabel}</button>
+        <button className="btn"
+          style={buttonStyles}
+          onClick={onModalConfirm}
+        >
+          {confirmLabel}
+        </button>
       </div>
     </Modal>
   );
