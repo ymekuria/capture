@@ -13,6 +13,7 @@ class RecordScreen extends Component {
     this.setState({
       videoSource: window.URL.createObjectURL(this.props.selectedScreenSource)
     });
+    console.log('this.props', this.props);
     // creating a recorder instance of the stream
     // this.recorder = new MediaRecorder(this.props.selectedScreenSource);
   }

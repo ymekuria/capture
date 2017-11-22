@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import { getUserScreens, selectScreenSource, createMediaStream } from '../actions';
 import Modal from '../components/Modal';
+import {
+  getUserScreens,
+  selectScreenSource,
+  createMediaStream
+} from '../actions';
 
 class SourcesScreen extends Component {
   state = {
@@ -84,6 +88,8 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { getUserScreens, selectScreenSource })(
-  SourcesScreen
-);
+export default connect(mapStateToProps, {
+  getUserScreens,
+  selectScreenSource,
+  createMediaStream
+})(SourcesScreen);

@@ -24,6 +24,7 @@ export const createMediaStream = (source, history) => async dispatch => {
     let audioTrack = audioStream.getAudioTracks()[0];
 
     videoStream.addTrack(audioTrack);
+    console.log('videoStream', videoStream);
 
     dispatch({ type: GET_MEDIA_STREAM, payload: videoStream });
     history.push('/record');
