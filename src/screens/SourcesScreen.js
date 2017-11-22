@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import { getUserScreens, selectScreenSource } from '../actions';
+import { getUserScreens, selectScreenSource, createMediaStream } from '../actions';
 import Modal from '../components/Modal';
 
 class SourcesScreen extends Component {
@@ -16,14 +16,16 @@ class SourcesScreen extends Component {
 
   onModalConfirm = () => {
     // TODO call action creater to start a media recording instance via electron
+    const { createMediaStream, selectedScreenSource, history } = this.props;
+
     this.setState({ modalOpen: false });
-    this.props.history.push('/record');
+    createMediaStream(selectedScreenSource, history);
   };
 
   onModalCancel = () => {
     this.setState({ modalOpen: false });
   };
-  
+
   renderScreenSources = () => {
     return _.map(this.props.screenSources, source => {
       return (

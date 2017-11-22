@@ -2,14 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
-export default ({ isModalOpen, callToAction, confirmLabel, onModalConfirm, onModalCancel }) => {
+export default ({
+  isModalOpen,
+  callToAction,
+  confirmLabel,
+  onModalConfirm,
+  onModalCancel
+}) => {
   const { modalStyles, buttonContainerStyles, buttonStyles } = styles;
   return (
-    <Modal
-      isOpen={isModalOpen}
-      contentLabel="Modal"
-      style={modalStyles}
-    >
+    <Modal isOpen={isModalOpen} contentLabel="Modal" style={modalStyles}>
       <p>{callToAction}</p>
       <div style={buttonContainerStyles}>
         <button
@@ -19,10 +21,7 @@ export default ({ isModalOpen, callToAction, confirmLabel, onModalConfirm, onMod
         >
           Cancel
         </button>
-        <button className="btn"
-          style={buttonStyles}
-          onClick={onModalConfirm}
-        >
+        <button className="btn" style={buttonStyles} onClick={onModalConfirm}>
           {confirmLabel}
         </button>
       </div>
@@ -55,7 +54,7 @@ const styles = {
       borderRadius: '4px',
       outline: 'none',
       padding: '20px'
-    },
+    }
   },
   buttonContainerStyles: {
     display: 'flex',
