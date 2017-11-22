@@ -7,18 +7,25 @@ import Modal from '../components/Modal';
 
 class HomeScreen extends Component {
   state = {
-    modalOpen: false
+    modalOpen: false,
+    selectedScreenSource: null
   }
 
   componentDidMount() {
     this.props.getUserScreens();
   }
 
-  onScreenSelect = source => {
-		// this.props.history.push('/videos');
-    this.props.selectScreenSource(source, this.props.history);
-  };
+  onModalConfirm = () => {
+    // TODO call action creater to start a media recording instance via electron
+    // closing modal and calling action creator to with selected screen
+    this.setState({ modalOpen: false });
+    this.props.selectScreenSource(this.state.currentScreenSelection, this.props.history);
 
+  }
+  onModalCancel = () => {
+    this.setState({ modalOpen: false });
+
+  }
   renderScreenSources = () => {
     return _.map(this.props.screenSources, source => {
       return (
@@ -29,7 +36,8 @@ class HomeScreen extends Component {
               <button
                 className="btn-floating  waves-effect waves-light halfway-fab"
                 onClick={() => {
-                  this.setState({ modalOpen: true })
+                  this.setState({ modalOpen: true, currentScreenSelection: source });
+
                 }}
               >
                 <i className="material-icons">add</i>
@@ -41,26 +49,17 @@ class HomeScreen extends Component {
     });
   };
 
-  onModalConfirm = () => {
-    // TODO call action creater to start a media recording instance via electron
-    this.setState({ modalOpen: false });
-  }
-  onModalCancel = () => {
-    this.setState({ modalOpen: false });
-  }
 
   render() {
-    console.log('this.state', this.state.modalOpen)
     return (
       <div>
-        <Modal isModalOpen={this.state.modalOpen}
+        <Modal
           callToAction="Do You Want To Record This Screen?"
           confirmLabel="Record"
-          onModalConfirm={() => console.log('confirm')}
+          isModalOpen={this.state.modalOpen}
+          onModalConfirm={this.onModalConfirm}
           onModalCancel={this.onModalCancel}
-        >
-
-        </Modal>
+        />
         <div style={styles.cardContainer}>{this.renderScreenSources()}</div>;
       </div>
 
