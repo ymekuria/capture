@@ -7,9 +7,8 @@ import Modal from '../components/Modal';
 
 class SourcesScreen extends Component {
   state = {
-    modalOpen: false,
-    currentScreenSelection: null
-  }
+    modalOpen: false
+  };
 
   componentDidMount() {
     this.props.getUserScreens();
@@ -17,15 +16,14 @@ class SourcesScreen extends Component {
 
   onModalConfirm = () => {
     // TODO call action creater to start a media recording instance via electron
-    // closing modal and calling action creator to with selected screen
     this.setState({ modalOpen: false });
-    this.props.selectScreenSource(this.state.currentScreenSelection, this.props.history);
+    this.props.history.push('/record');
+  };
 
-  }
   onModalCancel = () => {
     this.setState({ modalOpen: false });
-
-  }
+  };
+  
   renderScreenSources = () => {
     return _.map(this.props.screenSources, source => {
       return (
@@ -36,8 +34,9 @@ class SourcesScreen extends Component {
               <button
                 className="btn-floating  waves-effect waves-light halfway-fab"
                 onClick={() => {
-                  this.setState({ modalOpen: true, currentScreenSelection: source });
+                  this.setState({ modalOpen: true });
 
+                  this.props.selectScreenSource(source);
                 }}
               >
                 <i className="material-icons">add</i>
@@ -48,7 +47,6 @@ class SourcesScreen extends Component {
       );
     });
   };
-
 
   render() {
     return (
@@ -62,9 +60,7 @@ class SourcesScreen extends Component {
         />
         <div style={styles.cardContainer}>{this.renderScreenSources()}</div>;
       </div>
-
-    )
-
+    );
   }
 }
 
@@ -85,7 +81,6 @@ const styles = {
     margin: '10px'
   }
 };
-
 
 export default connect(mapStateToProps, { getUserScreens, selectScreenSource })(
   SourcesScreen

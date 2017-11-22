@@ -1,9 +1,10 @@
-import { SELECTED_SCREEN_SOURCE } from '../actions/types';
+import { SELECT_SCREEN_SOURCE } from '../actions/types';
 
 export default (state = {}, action) => {
+  console.log('screen source in reducer: ', action.payload)
   switch (action.type) {
-    case SELECTED_SCREEN_SOURCE:
-      return action.payload;
+    case SELECT_SCREEN_SOURCE:
+      return { ...action.payload };
     default:
       return state;
   }

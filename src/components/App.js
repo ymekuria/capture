@@ -12,7 +12,6 @@ class App extends Component {
         <div>
           <NavBar />
           <div>
-            <Route exact path="/modal" />
             <Route exact path="/" component={SourcesScreen} />
             <Route exact path="/record" component={RecordScreen} />
           </div>
