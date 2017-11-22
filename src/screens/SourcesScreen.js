@@ -5,10 +5,10 @@ import _ from 'lodash';
 import { getUserScreens, selectScreenSource } from '../actions';
 import Modal from '../components/Modal';
 
-class HomeScreen extends Component {
+class SourcesScreen extends Component {
   state = {
     modalOpen: false,
-    selectedScreenSource: null
+    currentScreenSelection: null
   }
 
   componentDidMount() {
@@ -88,5 +88,5 @@ const styles = {
 
 
 export default connect(mapStateToProps, { getUserScreens, selectScreenSource })(
-  HomeScreen
+  SourcesScreen
 );

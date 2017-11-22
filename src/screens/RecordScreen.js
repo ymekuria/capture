@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 const electron = window.electron;
 const { desktopCapturer } = electron;
 
-class RecordedVideosScreen extends Component {
+class RecordScreen extends Component {
   state = {
     videoSource: null
   };
@@ -54,4 +54,4 @@ class RecordedVideosScreen extends Component {
 const mapStateToProps = ({ selectedScreenSource }) => {
   return { selectedScreenSource };
 };
-export default connect(mapStateToProps)(RecordedVideosScreen);
+export default connect(mapStateToProps)(RecordScreen);

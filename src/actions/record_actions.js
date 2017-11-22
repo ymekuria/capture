@@ -37,7 +37,7 @@ export const selectScreenSource = (source, history) => async dispatch => {
     videoStream.addTrack(audioTrack);
 
     dispatch({ type: SELECTED_SCREEN_SOURCE, payload: videoStream });
-    history.push('/videos');
+    history.push('/record');
   } catch (e) {
     console.log('error: ', e);
   }
