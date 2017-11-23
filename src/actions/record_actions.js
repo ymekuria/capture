@@ -33,6 +33,10 @@ export const createMediaStream = (source, history) => async dispatch => {
   }
 };
 
-// const initializeRecordStream = stream => {
-//   const recorder = new MediaRecorder(stream);
-// }
+export const recordStream = stream => {
+  console.log('recording');
+}
+
+export const stopRecording = () => {
+  console.log('stopped recording');
+}

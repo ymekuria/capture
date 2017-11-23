@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-const electron = window.electron;
-const { desktopCapturer } = electron;
+import { recordStream, stopRecording } from '../actions';
+
 
 class RecordScreen extends Component {
   state = {
@@ -13,25 +13,17 @@ class RecordScreen extends Component {
     this.setState({
       videoSource: window.URL.createObjectURL(this.props.selectedScreenSource)
     });
-    console.log('this.props', this.props);
+
     // creating a recorder instance of the stream
     // this.recorder = new MediaRecorder(this.props.selectedScreenSource);
   }
 
-  componentWillUnmount() {
-    // stops the recording in the case when a user navigates withought manually stoping it.
-    if (this.recorder) {
-      this.recorder.stop();
-    }
-  }
-
   onRecordPress = () => {
-    this.recorder.start();
-    console.log('recorder', this.recorder);
+    this.props.recordStream(this.props.selectedScreenSource);
   };
 
   onStopPress = () => {
-    this.recorder.stop();
+    this.props.stopRecording();
   };
 
   render() {
@@ -55,4 +47,4 @@ class RecordScreen extends Component {
 const mapStateToProps = ({ selectedScreenSource }) => {
   return { selectedScreenSource };
 };
-export default connect(mapStateToProps)(RecordScreen);
+export default connect(mapStateToProps, { recordScreen, stopRecording })(RecordScreen);
