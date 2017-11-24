@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { recordStream, stopRecording } from '../actions';
 
-
 class RecordScreen extends Component {
   state = {
     videoSource: null
@@ -28,7 +27,7 @@ class RecordScreen extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: 'blue', opacity: 1 }}>
+      <div>
         <video src={this.state.videoSource} autoPlay="true" controls />
         <button className="btn" onClick={() => this.props.history.push('/')}>
           back
@@ -47,4 +46,7 @@ class RecordScreen extends Component {
 const mapStateToProps = ({ selectedScreenSource }) => {
   return { selectedScreenSource };
 };
-export default connect(mapStateToProps, { recordScreen, stopRecording })(RecordScreen);
+
+export default connect(mapStateToProps, { recordStream, stopRecording })(
+  RecordScreen
+);

@@ -1,4 +1,6 @@
 import { GET_MEDIA_STREAM } from './types';
+const electron = window.electron;
+const { ipcRenderer } = electron;
 
 export const createMediaStream = (source, history) => async dispatch => {
   // this specifies the screen source the user wants to record using the via the sourc.id
@@ -33,10 +35,14 @@ export const createMediaStream = (source, history) => async dispatch => {
   }
 };
 
-export const recordStream = stream => {
-  console.log('recording');
-}
+export const recordStream = stream => async dispatch => {
+  console.log('recording', stream);
+  ipcRenderer.send('record:start', stream);
 
-export const stopRecording = () => {
+
+};
+
+export const stopRecording = () => async dispatch => {
   console.log('stopped recording');
-}
+  ipcRenderer.send('record:stop')
+};

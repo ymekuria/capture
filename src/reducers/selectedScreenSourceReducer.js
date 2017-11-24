@@ -5,8 +5,6 @@ export default (state = {}, action) => {
   switch (action.type) {
     case SELECT_SCREEN_SOURCE:
       return action.payload;
-    case GET_MEDIA_STREAM:
-      return action.payload;
     default:
       return state;
   }
