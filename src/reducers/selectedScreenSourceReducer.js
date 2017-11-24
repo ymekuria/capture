@@ -1,7 +1,6 @@
-import { SELECT_SCREEN_SOURCE, GET_MEDIA_STREAM } from '../actions/types';
+import { SELECT_SCREEN_SOURCE } from '../actions/types';
 
 export default (state = {}, action) => {
-  console.log('screen source in reducer: ', action.payload);
   switch (action.type) {
     case SELECT_SCREEN_SOURCE:
       return action.payload;

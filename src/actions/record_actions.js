@@ -26,7 +26,6 @@ export const createMediaStream = (source, history) => async dispatch => {
     let audioTrack = audioStream.getAudioTracks()[0];
 
     videoStream.addTrack(audioTrack);
-    console.log('videoStream', videoStream);
 
     dispatch({ type: GET_MEDIA_STREAM, payload: videoStream });
     history.push('/record');
@@ -36,13 +35,18 @@ export const createMediaStream = (source, history) => async dispatch => {
 };
 
 export const recordStream = stream => async dispatch => {
-  console.log('recording', stream);
-  ipcRenderer.send('record:start', stream);
+  let recordedChunks = [];
+  const recorder = new MediaRecorder(stream);
 
+  recorder.ondataavailable = event => {
+    allChunks.push(event.data);
+  };
+
+  recorder.start();
 
 };
 
 export const stopRecording = () => async dispatch => {
   console.log('stopped recording');
-  ipcRenderer.send('record:stop')
+  ipcRenderer.send('record:stop');
 };

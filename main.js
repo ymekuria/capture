@@ -22,7 +22,3 @@ app.on('ready', () => {
 
   tray = new CaptureTray(iconPath, contextMenu);
 });
-
-ipcMain.on('record:start', (event, stream) => {
-  console.log('stream', stream);
-})

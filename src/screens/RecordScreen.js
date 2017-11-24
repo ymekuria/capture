@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { recordStream, stopRecording } from '../actions';
+const electron = window.electron;
+const { ipcRenderer } = electron;
 
 class RecordScreen extends Component {
   state = {
@@ -10,7 +12,7 @@ class RecordScreen extends Component {
   // rerendering once the videoSource blob is created
   componentDidMount() {
     this.setState({
-      videoSource: window.URL.createObjectURL(this.props.selectedScreenSource)
+      videoSource: window.URL.createObjectURL(this.props.mediaStream)
     });
 
     // creating a recorder instance of the stream
@@ -18,7 +20,7 @@ class RecordScreen extends Component {
   }
 
   onRecordPress = () => {
-    this.props.recordStream(this.props.selectedScreenSource);
+    this.props.recordStream(this.props.mediaStream);
   };
 
   onStopPress = () => {
@@ -43,8 +45,8 @@ class RecordScreen extends Component {
   }
 }
 
-const mapStateToProps = ({ selectedScreenSource }) => {
-  return { selectedScreenSource };
+const mapStateToProps = ({ mediaStream }) => {
+  return { mediaStream };
 };
 
 export default connect(mapStateToProps, { recordStream, stopRecording })(

@@ -6,7 +6,7 @@ import mediaStreamReducer from './mediaStreamReducer';
 const rootReducer = combineReducers({
   screenSources: screenSourceReducer,
   selectedScreenSource: selectedScreenSourceReducer,
-  mediaStrean: mediaStreamReducer
+  mediaStream: mediaStreamReducer
 });
 
 export default rootReducer;
