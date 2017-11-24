@@ -39,14 +39,14 @@ export const recordStream = stream => async dispatch => {
   const recorder = new MediaRecorder(stream);
 
   recorder.ondataavailable = event => {
-    allChunks.push(event.data);
+    recordedChunks.push(event.data);
   };
 
   recorder.start();
 
+  dispatch({ type: RECORD_START, payload: { recorder, recordedChunks } });
 };
 
-export const stopRecording = () => async dispatch => {
-  console.log('stopped recording');
-  ipcRenderer.send('record:stop');
+export const stopRecording = (recorder, recordedChunks) => async dispatch => {
+  recorder.stop()
 };
