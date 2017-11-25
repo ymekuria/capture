@@ -1,4 +1,4 @@
-import { GET_MEDIA_STREAM, RECORD_START } from './types';
+import { GET_MEDIA_STREAM, RECORD_START, RECORD_STOP } from './types';
 const electron = window.electron;
 const { ipcRenderer } = electron;
 
@@ -6,7 +6,7 @@ let recordedChunks = [];
 let recorder;
 
 export const createMediaStream = (source, history) => async dispatch => {
-  // this specifies the screen source the user wants to record using the via the sourc.id
+  // this specifies the screen source the user wants to record using the the source.id
   const constraints = {
     video: {
       mandatory: {
@@ -39,7 +39,6 @@ export const createMediaStream = (source, history) => async dispatch => {
 
 export const recordStream = stream => async dispatch => {
   recorder = new MediaRecorder(stream);
-  console.log('recorder', recorder);
 
   recorder.ondataavailable = event => {
     recordedChunks.push(event.data);
@@ -51,7 +50,10 @@ export const recordStream = stream => async dispatch => {
 };
 
 export const stopRecording = () => async dispatch => {
-  console.log('recorder in stop: ', recorder);
-  console.log('recordedChunks in stop: ', recordedChunks);
   recorder.stop();
+
+  const fullBlob = new Blob(recordedChunks);
+
+  // TODO: Add user flow to view recording and save to hard drive
+  dispatch({ type: RECORD_STOP, payload: fullBlob });
 };
