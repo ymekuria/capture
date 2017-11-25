@@ -2,6 +2,9 @@ import { GET_MEDIA_STREAM } from './types';
 const electron = window.electron;
 const { ipcRenderer } = electron;
 
+let recordedChunks = [];
+let recorder;
+
 export const createMediaStream = (source, history) => async dispatch => {
   // this specifies the screen source the user wants to record using the via the sourc.id
   const constraints = {
@@ -35,8 +38,8 @@ export const createMediaStream = (source, history) => async dispatch => {
 };
 
 export const recordStream = stream => async dispatch => {
-  let recordedChunks = [];
-  const recorder = new MediaRecorder(stream);
+  recorder = new MediaRecorder(stream);
+  console.log('recorder', recorder);
 
   recorder.ondataavailable = event => {
     recordedChunks.push(event.data);
@@ -44,7 +47,7 @@ export const recordStream = stream => async dispatch => {
 
   recorder.start();
 
-  dispatch({ type: RECORD_START, payload: { recorder, recordedChunks } });
+  dispatch({ type: RECORD_START });
 };
 
 export const stopRecording = (recorder, recordedChunks) => async dispatch => {
