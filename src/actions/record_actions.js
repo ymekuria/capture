@@ -1,4 +1,4 @@
-import { GET_MEDIA_STREAM } from './types';
+import { GET_MEDIA_STREAM, RECORD_START } from './types';
 const electron = window.electron;
 const { ipcRenderer } = electron;
 
@@ -50,6 +50,8 @@ export const recordStream = stream => async dispatch => {
   dispatch({ type: RECORD_START });
 };
 
-export const stopRecording = (recorder, recordedChunks) => async dispatch => {
-  recorder.stop()
+export const stopRecording = () => async dispatch => {
+  console.log('recorder in stop: ', recorder);
+  console.log('recordedChunks in stop: ', recordedChunks);
+  recorder.stop();
 };

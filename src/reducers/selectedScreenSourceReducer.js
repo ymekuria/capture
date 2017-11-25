@@ -1,6 +1,8 @@
 import { SELECT_SCREEN_SOURCE } from '../actions/types';
 
-export default (state = {}, action) => {
+const INITIAL_STATE = {};
+
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SELECT_SCREEN_SOURCE:
       return { ...action.payload }

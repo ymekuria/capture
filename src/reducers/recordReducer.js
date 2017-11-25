@@ -7,6 +7,6 @@ export default (state = INITIAL_STATE, action) => {
     case RECORD_START:
       return { recording: true };
     default:
-      state;
+      return state;
   }
 };
