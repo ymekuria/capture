@@ -24,7 +24,7 @@ class RecordScreen extends Component {
   };
 
   onStopPress = () => {
-    this.props.stopRecording();
+    this.props.stopRecording(this.props.history);
   };
 
   render() {

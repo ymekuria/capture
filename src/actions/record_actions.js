@@ -49,11 +49,12 @@ export const recordStream = stream => async dispatch => {
   dispatch({ type: RECORD_START });
 };
 
-export const stopRecording = () => async dispatch => {
+export const stopRecording = (history) => async dispatch => {
   recorder.stop();
 
   const fullBlob = new Blob(recordedChunks);
 
   // TODO: Add user flow to view recording and save to hard drive
   dispatch({ type: RECORD_STOP, payload: fullBlob });
+  history.push('/download');
 };
