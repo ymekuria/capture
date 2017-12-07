@@ -8,19 +8,14 @@ class DownloadScreen extends Component {
   };
 
   componentDidMount() {
-    // this.setState({
-    //   videoSource: window.URL.createObjectURL(this.props.blob)
-    // });
-    console.log('blob', this.props);
-    console.log('this.state:', this.state)
-
+    this.setState({
+      videoSource: window.URL.createObjectURL(this.props.blob)
+    });
   }
 
   render() {
-
     return (
       <div>
-
         <a href={this.state.videoSource} download="test">
           Download Screen Caputre
         </a>

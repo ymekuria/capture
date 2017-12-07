@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
+import SourceItem from '../components/SourceItem';
 import Modal from '../components/Modal';
 
 import {
@@ -30,26 +31,20 @@ class SourcesScreen extends Component {
     this.setState({ modalOpen: false });
   };
 
+  onSourceClick = (source) => {
+    this.setState({ modalOpen: true });
+
+    this.props.selectScreenSource(source);
+  };
+
   renderScreenSources = () => {
     return _.map(this.props.screenSources, source => {
       return (
-        <div style={styles.cardItem} onClick={() => 'c'} key={source.id}>
-          <div className="card">
-            <div>
-              <img src={source.thumbnail.toDataURL()} alt="" />
-              <button
-                className="btn-floating  waves-effect waves-light halfway-fab"
-                onClick={() => {
-                  this.setState({ modalOpen: true });
-
-                  this.props.selectScreenSource(source);
-                }}
-              >
-                <i className="material-icons">add</i>
-              </button>
-            </div>
-          </div>
-        </div>
+        <SourceItem
+          key={source.id}
+          source={source}
+          onSourceClick={this.onSourceClick}
+        />
       );
     });
   };
