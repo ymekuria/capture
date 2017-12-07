@@ -9,14 +9,11 @@ class RecordScreen extends Component {
     videoSource: null
   };
 
-  // rerendering once the videoSource blob is created
+  // rerendering once the videoSource url
   componentDidMount() {
     this.setState({
       videoSource: window.URL.createObjectURL(this.props.mediaStream)
     });
-
-    // creating a recorder instance of the stream
-    // this.recorder = new MediaRecorder(this.props.selectedScreenSource);
   }
 
   onRecordPress = () => {

@@ -20,7 +20,6 @@ class SourcesScreen extends Component {
   }
 
   onModalConfirm = () => {
-    // TODO call action creater to start a media recording instance via electron
     const { createMediaStream, selectedScreenSource, history } = this.props;
 
     this.setState({ modalOpen: false });
