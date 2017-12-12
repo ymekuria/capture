@@ -6,7 +6,6 @@ import SourcesScreen from '../screens/SourcesScreen';
 import RecordScreen from '../screens/RecordScreen';
 import DownloadScreen from '../screens/DownloadScreen';
 
-
 class App extends Component {
   render() {
     return (
@@ -17,7 +16,6 @@ class App extends Component {
             <Route exact path="/" component={SourcesScreen} />
             <Route exact path="/record" component={RecordScreen} />
             <Route exact path="/download" component={DownloadScreen} />
-
           </div>
         </div>
       </BrowserRouter>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { recordStream, stopRecording } from '../actions';
 const electron = window.electron;
@@ -26,17 +27,21 @@ class RecordScreen extends Component {
 
   render() {
     return (
-      <div>
-        <video src={this.state.videoSource} autoPlay="true" controls />
-        <button className="btn" onClick={() => this.props.history.push('/')}>
-          back
-        </button>
-        <button className="btn" onClick={this.onRecordPress}>
-          record
-        </button>
-        <button className="btn" onClick={this.onStopPress}>
-          stop
-        </button>
+      <div style={styles.containerStyle}>
+        <div style={styles.recordScreenstyle}>
+          <video src={this.state.videoSource} autoPlay="true" controls />
+        </div>
+        <div style={styles.buttonContainerStyle}>
+          <button className="btn" onClick={() => this.props.history.push('/')}>
+            back
+          </button>
+          <button className="btn" onClick={this.onRecordPress}>
+            record
+          </button>
+          <button className="btn" onClick={this.onStopPress}>
+            stop
+          </button>
+        </div>
       </div>
     );
   }
@@ -44,6 +49,20 @@ class RecordScreen extends Component {
 
 const mapStateToProps = ({ mediaStream }) => {
   return { mediaStream };
+};
+
+const styles = {
+  containerStyle: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'spaceAround'
+  },
+  recordScreenstyle: {
+    flex: 3
+  },
+  buttonContainerStyle: {
+    flex: 1
+  }
 };
 
 export default connect(mapStateToProps, { recordStream, stopRecording })(

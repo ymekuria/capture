@@ -46,7 +46,7 @@ export const recordStream = stream => async dispatch => {
     console.log('event', event);
     recordedChunks.push(event.data);
     recordBlob = event.data;
-    console.log('recordBlob', recordBlob);
+    console.log('recordBlob in on data ava', recordBlob);
   };
 
   recorder.start();
@@ -57,14 +57,13 @@ export const recordStream = stream => async dispatch => {
 
 export const stopRecording = history => async dispatch => {
   recorder.stop();
-  mediaStream.getVideoTracks()[0].stop()
-
+  mediaStream.getVideoTracks()[0].stop();
+  mediaStream.getAudioTracks()[0].stop();
 
   console.log('recordedChunks in stop', recordedChunks);
   console.log('recordBlob in stop', recordBlob);
 
   // console.log('fullBlob in stop:', fullBlob);
-
 
   // TODO: Add user flow to view recording and save to hard drive
   dispatch({ type: RECORD_STOP, payload: recordBlob });

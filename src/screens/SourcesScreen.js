@@ -21,6 +21,7 @@ class SourcesScreen extends Component {
   }
 
   onModalConfirm = () => {
+    console.log(this.props);
     const { createMediaStream, selectedScreenSource, history } = this.props;
 
     this.setState({ modalOpen: false });
@@ -34,7 +35,9 @@ class SourcesScreen extends Component {
   onSourceClick = (source) => {
     this.setState({ modalOpen: true });
 
+    console.log(source);
     this.props.selectScreenSource(source);
+
   };
 
   renderScreenSources = () => {
@@ -43,7 +46,7 @@ class SourcesScreen extends Component {
         <SourceItem
           key={source.id}
           source={source}
-          onSourceClick={this.onSourceClick}
+          onSourceClick={() => this.onSourceClick(source)}
         />
       );
     });
@@ -75,11 +78,6 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center'
-  },
-  cardItem: {
-    display: 'flex',
-    flex: 1,
-    margin: '10px'
   }
 };
 
