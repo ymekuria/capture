@@ -42,7 +42,6 @@ export const recordStream = stream => async dispatch => {
   recorder = new MediaRecorder(stream);
 
   recorder.ondataavailable = event => {
-
     recordedChunks.push(event.data);
   };
 
@@ -56,7 +55,7 @@ export const stopRecording = history => async dispatch => {
   recorder.stop();
   mediaStream.getTracks().forEach(stream => stream.stop());
 
-  const recordBlob = new Blob(recordedChunks, {type: 'video/webm'})
+  const recordBlob = new Blob(recordedChunks, { type: 'video/webm' });
 
   // TODO: Add user flow to view recording and save to hard drive
   dispatch({ type: RECORD_STOP, payload: recordBlob });

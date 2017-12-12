@@ -16,9 +16,10 @@ class DownloadScreen extends Component {
   render() {
     return (
       <div>
-        <a href={this.state.videoSource} download="test">
+        {/* <a href={this.state.videoSource} download="test">
           Download Screen Caputre
-        </a>
+        </a> */}
+        <video src={this.state.videoSource} autoPlay="true" controls />
       </div>
     );
   }
