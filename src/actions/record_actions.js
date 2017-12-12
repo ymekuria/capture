@@ -5,7 +5,6 @@ const { ipcRenderer } = electron;
 let mediaStream;
 let recordedChunks = [];
 let recorder;
-let recordBlob;
 
 export const createMediaStream = (source, history) => async dispatch => {
   // this specifies the screen source the user wants to record using the the source.id
@@ -43,13 +42,11 @@ export const recordStream = stream => async dispatch => {
   recorder = new MediaRecorder(stream);
 
   recorder.ondataavailable = event => {
-    console.log('event', event);
+
     recordedChunks.push(event.data);
-    recordBlob = event.data;
-    console.log('recordBlob in on data ava', recordBlob);
   };
 
-  recorder.start();
+  recorder.start(1500);
 
   dispatch({ type: RECORD_START });
   console.log('recordedChunks in record', recordedChunks);
@@ -57,13 +54,9 @@ export const recordStream = stream => async dispatch => {
 
 export const stopRecording = history => async dispatch => {
   recorder.stop();
-  mediaStream.getVideoTracks()[0].stop();
-  mediaStream.getAudioTracks()[0].stop();
+  mediaStream.getTracks().forEach(stream => stream.stop());
 
-  console.log('recordedChunks in stop', recordedChunks);
-  console.log('recordBlob in stop', recordBlob);
-
-  // console.log('fullBlob in stop:', fullBlob);
+  const recordBlob = new Blob(recordedChunks, {type: 'video/webm'})
 
   // TODO: Add user flow to view recording and save to hard drive
   dispatch({ type: RECORD_STOP, payload: recordBlob });

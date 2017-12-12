@@ -8,10 +8,9 @@ class DownloadScreen extends Component {
   };
 
   componentDidMount() {
-    // this.setState({
-    //   videoSource: window.URL.createObjectURL(this.props.blob)
-    // });
-    console.log('blob in DownloadScreen', this.props.blob);
+    this.setState({
+      videoSource: window.URL.createObjectURL(this.props.blob)
+    });
   }
 
   render() {
